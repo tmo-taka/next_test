@@ -1,5 +1,7 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useRef,useEffect,useReducer,useContext,createContext } from "react";
 import { useRouter } from 'next/router';
+import Context from '../../context/counter'
+import Apple from '../../components/apple';
 
 const highCostProcessing = (inputValue: number) => {
     let caliculateValue = Number(inputValue);
@@ -13,11 +15,21 @@ const highCostProcessing = (inputValue: number) => {
 export default function Home() {
     const [value, setValue] = useState(0);
     const [count, setCount] = useState(0);
+    const [text, setText] = useState("");
     const path = useRouter();
+    const inputEl = useRef(null);
 
     // const memorizedValue = (() => {
     //     return highCostProcessing(value);
     // });
+    const handleClick = () => {
+        setText(inputEl.current.value);
+        //inputEl.current: <input type="text">
+    };
+
+    useEffect(()=>{
+        console.log('かちあ');
+    },[text])
 
     const memorizedValue = useMemo(() => {
         return highCostProcessing(value);
@@ -28,6 +40,18 @@ export default function Home() {
             <div>{memorizedValue}</div>
             <button onClick={() => setCount(count + 1)}>プラス1</button>
             <div>{path.asPath}</div>
+
+            <input ref={inputEl} type="text" />
+            <button onClick={handleClick}>入力エリアをフォーカスする</button>
+
+            <div>カウンターの値：{Context.number}</div>
+            <button onClick={() => Context.dispatch('add')}>増やす</button>
+            <button onClick={() => Context.dispatch('minus')}>減らす</button>
+            <button onClick={() => Context.dispatch('twice')}>二倍</button>
+
+            <Context.CounterContext.Provider value={Context.number}>
+                <Apple />
+            </Context.CounterContext.Provider>
         </>
     )
 }
