@@ -43,15 +43,7 @@ export default function Home() {
 
             <input ref={inputEl} type="text" />
             <button onClick={handleClick}>入力エリアをフォーカスする</button>
-
-            <div>カウンターの値：{Context.number}</div>
-            <button onClick={() => Context.dispatch('add')}>増やす</button>
-            <button onClick={() => Context.dispatch('minus')}>減らす</button>
-            <button onClick={() => Context.dispatch('twice')}>二倍</button>
-
-            <Context.CounterContext.Provider value={Context.number}>
-                <Apple />
-            </Context.CounterContext.Provider>
+            <Context />
         </>
     )
 }
