@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useRef,useEffect,useReducer,useContext,createContext } from "react";
 import { useRouter } from 'next/router';
-import Context from '../../context/counter'
+import CounterContextProvider, {CounterContext}  from '../../context/counter'
 import Apple from '../../components/apple';
 
 const highCostProcessing = (inputValue: number) => {
@@ -35,15 +35,20 @@ export default function Home() {
         return highCostProcessing(value);
     }, [value]);
 
+    const number = useContext(CounterContext);
+
     return (
-        <>
+        <CounterContextProvider>
             <div>{memorizedValue}</div>
             <button onClick={() => setCount(count + 1)}>プラス1</button>
             <div>{path.asPath}</div>
 
             <input ref={inputEl} type="text" />
             <button onClick={handleClick}>入力エリアをフォーカスする</button>
-            <Context />
-        </>
+            <div>カウンターの値：{number}</div>
+            <button onClick={() => dispatch('add')}>増やす</button>
+            <button onClick={() => dispatch('minus')}>減らす</button>
+            <button onClick={() => dispatch('twice')}>二倍</button>
+        </CounterContextProvider>
     )
 }

@@ -1,8 +1,8 @@
-import { createContext, useReducer } from 'react';
+import { useReducer , createContext} from 'react';
 
-export default function Context(){
+export const CounterContext = createContext(0);
 
-    const CounterContext = createContext(0)
+const CounterContextProvider = ({children}) => {
 
     type Action = 'add' | 'minus' | 'twice'
 
@@ -22,11 +22,10 @@ export default function Context(){
     const [number, dispatch] = useReducer(reducerJudge, 0);
 
     return (
-        <CounterContext.Provider value={CounterContext}>_
-            <div>カウンターの値：{number}</div>
-            <button onClick={() => dispatch('add')}>増やす</button>
-            <button onClick={() => dispatch('minus')}>減らす</button>
-            <button onClick={() => dispatch('twice')}>二倍</button>
+        <CounterContext.Provider value={number}>
+            {children}
         </CounterContext.Provider>
     )
 }
+
+export default CounterContextProvider;
