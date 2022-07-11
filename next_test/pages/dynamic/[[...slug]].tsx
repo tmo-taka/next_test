@@ -1,7 +1,8 @@
 import React, { useMemo, useState, useRef,useEffect,useReducer,useContext,createContext } from "react";
 import { useRouter } from 'next/router';
 import CounterContextProvider, {CounterContext}  from '../../context/counter'
-import Apple from '../../components/apple';
+import Counter from '../../components/counter'
+import reducerJudge from '../../modules/counter';
 
 const highCostProcessing = (inputValue: number) => {
     let caliculateValue = Number(inputValue);
@@ -35,10 +36,11 @@ export default function Home() {
         return highCostProcessing(value);
     }, [value]);
 
-    const number = useContext(CounterContext);
+    const initialData = useContext(CounterContext);
+    const [number = initialData, dispatch] = useReducer(reducerJudge, 0);
 
     return (
-        <CounterContextProvider>
+        <CounterContextProvider value={initialData}>
             <div>{memorizedValue}</div>
             <button onClick={() => setCount(count + 1)}>プラス1</button>
             <div>{path.asPath}</div>
@@ -49,6 +51,7 @@ export default function Home() {
             <button onClick={() => dispatch('add')}>増やす</button>
             <button onClick={() => dispatch('minus')}>減らす</button>
             <button onClick={() => dispatch('twice')}>二倍</button>
+            <Counter />
         </CounterContextProvider>
     )
 }
