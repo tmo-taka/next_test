@@ -25,6 +25,7 @@ export default function Home() {
     // });
     const handleClick = () => {
         setText(inputEl.current.value);
+        inputEl.current.focus();
         //inputEl.current: <input type="text">
     };
 
@@ -47,6 +48,7 @@ export default function Home() {
 
             <input ref={inputEl} type="text" />
             <button onClick={handleClick}>入力エリアをフォーカスする</button>
+            <div>入力された値：{text}</div>
             <div>カウンターの値：{number}</div>
             <button onClick={() => dispatch('add')}>増やす</button>
             <button onClick={() => dispatch('minus')}>減らす</button>

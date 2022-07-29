@@ -2,7 +2,7 @@ type Action = 'add' | 'minus' | 'twice'
 
 const initialState:number = 0
 
-const reducerJudge =  (state:number = initialState ,action: Action) => {
+const reducerJudge =  (state:number = initialState ,action: Action):number => {
     switch (action) {
         case 'add':
             return state + 1;
