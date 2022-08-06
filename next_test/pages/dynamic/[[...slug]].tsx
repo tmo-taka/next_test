@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useRef,useEffect,useReducer,useContext,createContext } from "react";
 import { useRouter } from 'next/router';
-import CounterContextProvider, {CounterContext}  from '../../context/counter'
+import {CounterContext}  from '../../context/counter'
 import Counter from '../../components/counter'
 import reducerJudge from '../../modules/counter';
 
@@ -41,7 +41,7 @@ export default function Home() {
     const [number = initialData, dispatch] = useReducer(reducerJudge, 0);
 
     return (
-        <CounterContextProvider value={initialData}>
+        <CounterContext.Provider value={number}>
             <div>{memorizedValue}</div>
             <button onClick={() => setCount(count + 1)}>プラス1</button>
             <div>{path.asPath}</div>
@@ -54,6 +54,6 @@ export default function Home() {
             <button onClick={() => dispatch('minus')}>減らす</button>
             <button onClick={() => dispatch('twice')}>二倍</button>
             <Counter />
-        </CounterContextProvider>
+        </CounterContext.Provider>
     )
 }

@@ -1,17 +1,19 @@
 import { useReducer , createContext} from 'react';
 import reducerJudge from '../modules/counter';
 
-export const CounterContext = createContext(0);
+const [number, dispatch] = useReducer(reducerJudge, 0);
 
-const CounterContextProvider = ({children}) => {
+export const CounterContext = createContext(number);
 
-    const [number, dispatch] = useReducer(reducerJudge, 0);
+// const CounterContextProvider = ({children}) => {
 
-    return (
-        <CounterContext.Provider value={number}>
-            {children}
-        </CounterContext.Provider>
-    )
-}
+//     const [number, dispatch] = useReducer(reducerJudge, 0);
 
-export default CounterContextProvider;
+//     return (
+//         <CounterContext.Provider value={number}>
+//             {children}
+//         </CounterContext.Provider>
+//     )
+// }
+
+// export default CounterContextProvider;
