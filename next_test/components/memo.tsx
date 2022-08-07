@@ -4,7 +4,7 @@ import React, {memo} from "react"
 export default memo((props) =>{
  console.log("Testコンポーネントが呼ばれた")
  //onClickもpopsとして定義されているため描画される
- console.log(props);
+ console.log('prospの値:' + props);
   return (
     <div>
         {props.text}

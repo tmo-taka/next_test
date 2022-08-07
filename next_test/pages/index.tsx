@@ -24,7 +24,7 @@ export default function index() {
   //   console.log(value);
   // };
 
-  const plusDummy =() =>{
+  const plusDummy =():void =>{
     if(text == 'テスト'){
       setText("再描画された")
     }
@@ -33,7 +33,7 @@ export default function index() {
     // }
 
     //NOTE：こいつでdummyが更新されるのでindexが再レンタリングされる。
-    //NOTE: それによってmessageが再定義され、outputLogがcollBackが無意味となる
+    //NOTE: それによってmessageが再定義され、outputLogのcollBackが無意味となる
     setDummy(dummy+1)
   }
 
