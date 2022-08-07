@@ -31,6 +31,9 @@ export default function index() {
     // }else {
     //   setText("テスト")
     // }
+
+    //NOTE：こいつでdummyが更新されるのでindexが再レンタリングされる。
+    //NOTE: それによってmessageが再定義され、outputLogがcollBackが無意味となる
     setDummy(dummy+1)
   }
 
