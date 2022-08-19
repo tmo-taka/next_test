@@ -40,7 +40,7 @@ export default function index() {
   //NOTE: この関数では描画されるたびに関数に差が出ていることがわかるuseEffect
   useEffect(() => {
     console.log('これが関数描画')
-    outputLog(message);
+    // outputLog(message);
   }, [outputLog]);
 
   return (
@@ -51,7 +51,7 @@ export default function index() {
         onChange={(e) => setMessage(e.target.value)}
       />
       <button onClick={() => plusDummy()}>こっちはキャッシュがある</button>
-      <Memo text={text} onClick={() => outlog()} />
+      <Memo text={text} onClick={() => outputLog(message)} />
       <UseMemo />
     </div>
   )
