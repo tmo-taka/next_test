@@ -12,7 +12,8 @@ export default function index() {
   const [dummy,setDummy] = useState(0);
   const [text,setText] = useState("テスト")
 
-  //NOTE: こちらはmessageが変更された時のみ描写
+  // NOTE: こちらはtextが変更された時のみ描写
+  // NOTE: これを使うことによって関数が再定義されずpropsの値が更新されることがない
   const outputLog = useCallback(() => {
   // useCallBackだからそれは引数なしか
     console.log(text);
