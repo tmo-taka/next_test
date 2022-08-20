@@ -13,16 +13,16 @@ export default function index() {
   const [text,setText] = useState("テスト")
 
   //NOTE: こちらはmessageが変更された時のみ描写
-  const outputLog = useCallback((value: string) => {
-    console.log(value);
-  },[message]);
+  // const outputLog = useCallback((value: string) => {
+  //   console.log(value);
+  // },[message]);
 
   console.log("index再描画")
 
   //NOTE: こちらはmessage以外のdummyが更新されても描写
-  // const outputLog = (value: string) => {
-  //   console.log(value);
-  // };
+  const outputLog = (value: string) => {
+    console.log(value);
+  };
 
   const plusDummy =():void =>{
     if(text == 'テスト'){
@@ -51,7 +51,7 @@ export default function index() {
         onChange={(e) => setMessage(e.target.value)}
       />
       <button onClick={() => plusDummy()}>こっちはキャッシュがある</button>
-      <Memo text={text} onClick={() => outputLog(message)} />
+      <Memo text={text} handleClick={() => outputLog(message)} />
       <UseMemo />
     </div>
   )

@@ -1,12 +1,19 @@
-import React, {memo} from "react"
+import React from "react"
+
+type Props ={
+  text: string,
+  handleClick: () => void,
+  children? : ReactNode,
+
+}
 
 //NOTE: React.memoによって親コンポーネントが更新されても再レンタリングされない
-export default memo((props) =>{
+export default React.memo((props:Props) =>{
  console.log("Testコンポーネントが呼ばれた")
  //onClickもpopsとして定義されているため描画される
- console.log('prospの値:' + props);
+ console.log('prospの値:' + props.text);
   return (
-    <div>
+    <div onClick={props.handleClick}>
         {props.text}
     </div>
   )
