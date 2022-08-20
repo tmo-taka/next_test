@@ -22,3 +22,6 @@ https://reactjs.org/docs/strict-mode.html
 
 つまり！コンポーネントが描画された後にuseEffectは実行される！  
 だから、コンポーネントの最新のpropsにアクセスすることができる。
+
+## 意味のないueCallBack
+[参考記事](https://qiita.com/jonakp/items/0db6fb9e75edcec875b2)

@@ -13,24 +13,24 @@ export default function index() {
   const [text,setText] = useState("テスト")
 
   //NOTE: こちらはmessageが変更された時のみ描写
-  // const outputLog = useCallback((value: string) => {
-  //   console.log(value);
-  // },[message]);
+  const outputLog = useCallback(() => {
+  // useCallBackだからそれは引数なしか
+    console.log(text);
+  },[text]);
 
   console.log("index再描画")
 
   //NOTE: こちらはmessage以外のdummyが更新されても描写
-  const outputLog = (value: string) => {
-    console.log(value);
-  };
+  // const outputLog = (value: string) => {
+  //   console.log(value);
+  // };
 
   const plusDummy =():void =>{
     if(text == 'テスト'){
       setText("再描画された")
+    }else {
+      console.log('setTextが呼ばれた')
     }
-    // }else {
-    //   setText("テスト")
-    // }
 
     //NOTE：こいつでdummyが更新されるのでindexが再レンタリングされる。
     //NOTE: それによってmessageが再定義され、outputLogのcollBackが無意味となる
@@ -51,7 +51,7 @@ export default function index() {
         onChange={(e) => setMessage(e.target.value)}
       />
       <button onClick={() => plusDummy()}>こっちはキャッシュがある</button>
-      <Memo text={text} handleClick={() => outputLog(message)} />
+      <Memo text={text} handleClick={outputLog} />
       <UseMemo />
     </div>
   )
